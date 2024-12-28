@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title> Fizyka - fale </title>
+    <meta charset="utf-8"/>
+
+    <style>
+
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: black;
+            width: 99%;
+            height: 100%;
+        }
+
+        .bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: #275DAD;
+
+            position: fixed;
+            top: 0%;
+            left: 2.5%;
+            width: 95%;
+            height: 4%;
+            margin: 0;
+            padding: 10px 0;
+
+            color: #FCF7F8;
+        }
+
+        .bar header {
+            align-self: center; 
+        }
+
+        .bar nav {
+            align-self: center; 
+        }
+
+        .bar nav a,
+        .bar nav button {
+            margin: 0 5px;
+            padding: 10px 10px; /* Możesz dostosować padding w zależności od preferencji */
+            text-decoration: none; /* Usuwa podkreślenie z linków */
+            color: #FCF7F8; /* Kolor tekstu */
+            background-color: transparent; /* Tło przezroczyste */
+            font-size: 16px; /* Ustawienie tej samej wielkości czcionki */
+            cursor: pointer; /* Wskaźnik zmienia się na rękę */
+            display: inline-block; /* Zapewnia jednolitą szerokość i wysokość */
+            border-radius: 4px; /* Zaokrąglenie rogów */
+            transition: background-color 0.3s, color 0.3s; /* Płynne przejścia */
+        }
+
+        .bar nav a:hover,
+        .bar nav button:hover {
+            background-color: #FCF7F8; /* Zmiana tła przy najechaniu */
+            color: #275DAD; /* Zmiana koloru tekstu przy najechaniu */
+        }
+
+        /* Stąd zaczyna się kontent*/
+        .content {
+            width: 100%;
+            padding-top: 3%;
+            align-items: center; 
+        }
+
+
+        .content {
+            display: flex;
+            flex-direction: column; /* Ustawia elementy w kolumnie */
+        }
+
+        .element {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px;
+            width: 100%;
+        }
+
+        .element:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .element article {
+            font-size: 22px; /* Ustawia wielkość czcionki, możesz dostosować */
+            color: black; /* Kolor tła artykułu */
+            background-color: #FCF7F8;
+            width: 40%;
+            padding: 10px;
+            border-radius: 3px;
+        }
+
+        .element img,
+        .element audio,
+        .element video {
+            width: 35%; /* Szerokość obrazów/filmów/audio */
+            max-width: 75%;
+            align-self: center;
+            border-radius: 5px;
+        }
+
+        .element svg{
+            align-self: center;
+            height: auto;
+            width: 35%;
+        }
+
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <div class="bar">
+        <header> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="350" height="50">
+                <path d="M 1 25 A 30 30 0 0 1 51 25" stroke="black" stroke-width="2" fill="transparent" />
+                <path d="M 51 25 A 30 30 0 0 0 101 25" stroke="black" stroke-width="2" fill="transparent" />
+
+                
+                                
+                <text x="105" y="25" font-family="Verdana" font-size="24" fill="black" text-anchor="start" alignment-baseline="middle">
+                        fale mechaniczne 
+                </text>
+            </svg> 
+
+        </header>
+
+        <nav>
+            <a href="#">Animacja interferencji</a>
+            <a href="#">Strona główna</a>
+            <a href="#">Rejestracja</a>
+            <div id="LoginLogout" style="display: inline-block;">
+                <a href="#">Logowanie</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="element">
+            <article>
+                Fala – zaburzenie rozprzestrzeniające się w ośrodku materialnym lub w przestrzeni. W przypadku fal mechanicznych
+                cząstki ośrodka, w którym rozchodzi się fala, oscylują wokół położenia równowagi, przy czym przenoszą energię z jednego
+                miejsca do drugiego bez transportu jakiejkolwiek materii.
+                <br><br>
+                W zależności od kierunku rozchodzenia się fal można podzielić je na poprzeczne i podłużne. Fale poprzeczne mają kierunek
+                drgań prostopadły do kierunku rozchodzenia się (np. fala na sznurze, fale elektromagnetyczne). W falach podłużnych
+                drgania odbywają się w tym samym kierunku, w którym następuje ich propagacja (np. fale akustyczne). Natomiast w
+                przypadku fal rozchodzących się na wodzie ma się do czynienia z superpozycją drgań poprzecznych i podłużnych.
+            </article>
+
+            <img src="png/fala.jpg" alt="Fala na wodzie" >
+        </div>
+
+        <div class="element">
+            <article>
+                odbicie – po dojściu do granicy ośrodków fale zmieniają zwrot, poruszając się nadal w tym samym ośrodku
+            </article>
+            <svg width="35%" viewBox="0 0 400 200">
+                <!-- Podłoże -->
+                <line x1="0" y1="120" x2="400" y2="120" stroke="white" stroke-width="2" />
+
+                <!-- Promień padający -->
+                <line x1="100" y1="20" x2="200" y2="120" stroke="white" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                <!-- Promień odbity -->
+                <line x1="200" y1="120" x2="300" y2="20" stroke="white" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                <!-- Normalna (linia przerywana) -->
+                <line x1="200" y1="20" x2="200" y2="120" stroke="white" stroke-dasharray="5,5" />
+
+                <!-- Łuk -->
+                <path d="M 170,90 A 50,50 0 0,1 230,90" fill="none" stroke="white" stroke-width="2" />
+
+                <text x="165" y="75" font-size="15" fill="white">α</text>
+                <text x="225" y="75" font-size="15" fill="white">β</text>
+                <text x="250" y="140" font-size="15" fill="white">α = β</text>
+
+                <!-- Strzałki -->
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                        <path d="M 0 0 L 10 5 L 0 10 Z" fill="white" />
+                    </marker>
+                </defs>
+            </svg>
+
+            
+        </div>
+
+        <div class="element">
+            <article>
+                załamanie (refrakcja) – na granicy ośrodków fala, przechodząc do ośrodka, w którym porusza się z inną prędkością,
+                zmienia kierunek swego biegu
+            </article>
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Ośrodek 1 -->
+                    <rect x="0" y="0" width="400" height="100" fill="none" />
+                    <text x="20" y="50" font-size="14" fill="white">Ośrodek 1</text>
+                
+                    <!-- Ośrodek 2 -->
+                    <rect x="0" y="100" width="400" height="100" fill="none" />
+                    <text x="20" y="150" font-size="14" fill="white">Ośrodek 2</text>
+                
+                    <!-- Podłoże -->
+                    <line x1="0" y1="100" x2="400" y2="100" stroke="white" stroke-width="2" />
+                
+                    <!-- Normalna -->
+                    <line x1="200" y1="0" x2="200" y2="200" stroke="white" stroke-dasharray="5,5" />
+                
+                    <!-- Promień padający -->
+                    <line x1="120" y1="30" x2="200" y2="100" stroke="white" stroke-width="1.5" marker-end="url(#arrow)" />
+                
+                    <!-- Promień załamany -->
+                    <line x1="200" y1="100" x2="250" y2="190" stroke="white" stroke-width="1.5" marker-end="url(#arrow)" />
+                
+                    <!-- Łuk dla kąta α -->
+                    <path d="M177,80 A15,15 0 0,1 200,75" stroke="white" fill="none" />
+                    <text x="180" y="65" font-size="14" fill="white">α</text>
+                
+                    <!-- Łuk dla kąta β -->
+                    <path d="M200,125 A10,10 0 0,0 211,120" stroke="white" fill="none" />
+                    <text x="205" y="145" font-size="14" fill="white">β</text>
+
+                    <!-- Strzałki -->
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 Z" fill="white" />
+                        </marker>
+                    </defs>
+                
+                </svg>
+        
+        </div>
+
+        <div class="element">
+            <article>
+                dyfrakcja – uginanie się fali na krawędziach, czego skutkiem jest zdolność do omijania przeszkód mniejszych niż długość
+                fali, oraz powstawanie pasków dyfrakcyjnych po przejściu fali przez wąską szczelinę albo przeszkodę (np. siatkę
+                dyfrakcyjną)
+            </article>
+            <img src="png/dyfrakcja.jpg" alt="Załamanie fali" >
+        </div>
+
+        <div class="element">
+            <article>
+                interferencja – nakładanie się spójnych fal z różnych źródeł, które prowadzi do wzmocnienia lub wygaszenia się tychże
+                fal
+            </article>
+            <video width="320" height="240" controls>
+                <source src="video/interferencja.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        
+        </div>
+
+        <div class="element">
+            <article>
+                Efekt Dopplera – zjawisko fizyczne występujące dla fal, polegające na powstawaniu różnicy częstotliwości fali wysyłanej
+                przez jej źródło oraz częstotliwości fali rejestrowanej przez obserwatora, który porusza się względem tego źródła.
+                Dla fal rozprzestrzeniających się w ośrodku, takich jak na przykład fale dźwiękowe, wielkość efektu zależy od prędkości
+                obserwatora oraz źródła względem ośrodka, w którym te fale się rozchodzą.
+            </article>
+            <audio controls>
+                <source src="audio/doppler.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        
+        </div>
+
+
+    </div>
+
+</body>
+</html>
