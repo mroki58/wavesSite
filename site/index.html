@@ -3,116 +3,8 @@
 <head>
     <title> Fizyka - fale </title>
     <meta charset="utf-8"/>
-
-    <style>
-
-        body{
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            background-color: black;
-            width: 99%;
-            height: 100%;
-        }
-
-        .bar {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between; 
-            align-items: center; 
-            background-color: #275DAD;
-
-            position: fixed;
-            top: 0%;
-            left: 2.5%;
-            width: 95%;
-            height: 4%;
-            margin: 0;
-            padding: 10px 0;
-
-            color: #FCF7F8;
-        }
-
-        .bar header {
-            align-self: center; 
-        }
-
-        .bar nav {
-            align-self: center; 
-        }
-
-        .bar nav a,
-        .bar nav button {
-            margin: 0 5px;
-            padding: 10px 10px; /* Możesz dostosować padding w zależności od preferencji */
-            text-decoration: none; /* Usuwa podkreślenie z linków */
-            color: #FCF7F8; /* Kolor tekstu */
-            background-color: transparent; /* Tło przezroczyste */
-            font-size: 16px; /* Ustawienie tej samej wielkości czcionki */
-            cursor: pointer; /* Wskaźnik zmienia się na rękę */
-            display: inline-block; /* Zapewnia jednolitą szerokość i wysokość */
-            border-radius: 4px; /* Zaokrąglenie rogów */
-            transition: background-color 0.3s, color 0.3s; /* Płynne przejścia */
-        }
-
-        .bar nav a:hover,
-        .bar nav button:hover {
-            background-color: #FCF7F8; /* Zmiana tła przy najechaniu */
-            color: #275DAD; /* Zmiana koloru tekstu przy najechaniu */
-        }
-
-        /* Stąd zaczyna się kontent*/
-        .content {
-            width: 100%;
-            padding-top: 3%;
-            align-items: center; 
-        }
-
-
-        .content {
-            display: flex;
-            flex-direction: column; /* Ustawia elementy w kolumnie */
-        }
-
-        .element {
-            display: flex;
-            justify-content: space-evenly;
-            margin: 10px;
-            width: 100%;
-        }
-
-        .element:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .element article {
-            font-size: 22px; /* Ustawia wielkość czcionki, możesz dostosować */
-            color: black; /* Kolor tła artykułu */
-            background-color: #FCF7F8;
-            width: 40%;
-            padding: 10px;
-            border-radius: 3px;
-        }
-
-        .element img,
-        .element audio,
-        .element video {
-            width: 35%; /* Szerokość obrazów/filmów/audio */
-            max-width: 75%;
-            align-self: center;
-            border-radius: 5px;
-        }
-
-        .element svg{
-            align-self: center;
-            height: auto;
-            width: 35%;
-        }
-
-
-
-
-
-    </style>
-
+    <link rel="stylesheet" href="styles/mainStyle.css" />
+    <link rel="stylesheet" href="styles/formStyle.css" />
 
 </head>
 <body>
@@ -134,10 +26,13 @@
         <nav>
             <a href="#">Animacja interferencji</a>
             <a href="#">Strona główna</a>
-            <a href="#">Rejestracja</a>
+            <button id="registerButton">Rejestracja</a>
+
             <div id="LoginLogout" style="display: inline-block;">
-                <a href="#">Logowanie</a>
+                <button id="loginButton"> Logowanie </a>
+                <button id="logoutButton" style="display: none;">Wyloguj</button>
             </div>
+
         </nav>
     </div>
 
@@ -234,7 +129,6 @@
                     </defs>
                 
                 </svg>
-        
         </div>
 
         <div class="element">
@@ -272,8 +166,13 @@
         
         </div>
 
+        <div id="logRegForm" style="display: none;">
+
+        </div>
 
     </div>
+
+    <script src="scripts/formScript.js"></script>
 
 </body>
 </html>
