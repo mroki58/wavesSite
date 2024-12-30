@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Fizyka - fale </title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/mainStyle.css" />
+    <link rel="stylesheet" href="styles/formStyle.css" />
+    
+    <link rel="stylesheet" href="styles/animCanvas.css" />
+</head>
+<body>
+        <div class="bar">
+            <header>
+                <svg xmlns="http://www.w3.org/2000/svg" width="350" height="50">
+                    <path d="M 1 25 A 30 30 0 0 1 51 25" stroke="black" stroke-width="2" fill="transparent" />
+                    <path d="M 51 25 A 30 30 0 0 0 101 25" stroke="black" stroke-width="2" fill="transparent" />
+        
+                    <text x="105" y="25" font-family="Verdana" font-size="24" fill="black" text-anchor="start"
+                        alignment-baseline="middle">
+                        fale mechaniczne
+                    </text>
+                </svg>
+        
+            </header>
+        
+            <nav>
+                <a href="animacja.html">Animacja interferencji</a>
+                <a href="index.html">Strona główna</a>
+                <button id="registerButton">Rejestracja</button>
+        
+                    <div id="LoginLogout" style="display: inline-block;">
+                        <button id="loginButton"> Logowanie </button>
+                            <button id="logoutButton" style="display: none;" onclick="logout()">Wyloguj</button>
+                    </div>
+        
+            </nav>
+        </div>
+
+
+        <div class="content">
+            <div class="element">
+                <canvas> Canvas not supported </canvas>
+            </div>
+
+
+            <form id="forAnimation">
+                <label for="d">Odległość między źrodłami</label>
+                <input type="range" id="d" name="d" min="0" max="100" value="50" step="0.1" /> 
+
+                <label for="f1">Częstotliwość 1. źródła</label>
+                <input type="range" id="f1" name="f1" min="0.5" max="5" value="1" step="0.01"/>
+
+
+                <label for="f2">Częstotliwość 2. źrodła</label>
+                <input type="range" id="f2" name="f2" min="0.5" max="5" value="1" step="0.01"/>
+
+
+                <label for="a1">Amplituda 1. źródła</label>
+                <input type="range" id="a1" name="a1" min="0" max="100" value="50" step="0.1"/>
+
+
+                <label for="a2">Amplituda 2. źródła</label>
+                <input type="range" id="a2" name="a2" min="0" max="100" value="50" step="0.1"/>
+
+
+
+
+
+            </form>
+        </div>
+
+        <div id="logRegForm" style="display: none;">
+        
+        </div>
+
+        <script src="scripts/utils.js"></script>
+        <script src="scripts/formScript.js"></script>
+        <script src="scripts/formSend.js"></script>
+        <script src="scripts/buttonChange.js"></script>
+        <script src="scripts/animCanvas.js"></script>
+
+</body>
+</html>
