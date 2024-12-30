@@ -13,13 +13,14 @@ let refreshTokens = [];
 // Usuwa tokeny, których ważność się skończyła
 setInterval(() => {
     const now = Date.now();
-    refreshTokens.filter((token) => token.exp >= now);
+    refreshTokens = refreshTokens.filter((token) => token.exp >= now);
 }, 30 * 60 * 1000); 
 
 router.post('/register', async (req,res) => {
     try{
         const {email, username, password} = req.body;
 
+        console.log(req.body)
         // jeśli użytkownik istnieje to nie tworzymy nowego
         const select = db.prepare("SELECT email, username FROM users WHERE email = ? OR username = ?");
         const ans = select.all(email, username);
@@ -42,7 +43,7 @@ router.post('/register', async (req,res) => {
         return res.send("Użytkownik zarejestrowany pomyślnie");
 
     }catch(err){
-        res.status(500).send("Błąd bazy danych");
+        res.status(500).send(err.message);
     }
 })
 
@@ -55,7 +56,7 @@ router.post('/login', async (req, res) => {
 
         if(ans.length == 0)
         {
-            return res.status(401).send({msg: "Użytkownik nie istnieje!"});
+            return res.status(401).send('Użytkownik nie istnieje!');
         }
 
 
@@ -68,15 +69,15 @@ router.post('/login', async (req, res) => {
 
             refreshTokens.push({refreshToken: refreshToken, exp: Date.now() + 7200 * 1000});
 
-            res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000 });
-            res.cookie('refreshToken', refreshToken, {maxAge: 2 * 60 * 60 * 1000});
-            res.cookie('user_id', user_id, { maxAge: 2 * 60 * 60 * 1000 });
-            res.send({msg: 'Użytkownik zalogowany' });
+            res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
+            res.cookie('refreshToken', refreshToken, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
+            res.cookie('user_id', ans[0].user_id, { maxAge: 2 * 60 * 60 * 1000 , domain: 'localhost'});
+            res.send('Użytkownik zalogowany');
         } else {
-            res.status(401).send({msg: 'Nieprawidłowe dane logowania'});
+            res.status(401).send('Nieprawidłowe dane logowania');
         }
     }catch(err){
-        res.status(500).send({msg: err.message});
+        res.status(500).send(err.message);
     }
 });
 
@@ -87,7 +88,7 @@ router.post('/token', (req, res) => {
         return res.sendStatus(401);
     }
 
-    if (!refreshTokens.includes(token)) {
+    if (!refreshTokens.find(t => t.refreshToken === token)) {
         return res.sendStatus(403);
     }
 
@@ -98,16 +99,20 @@ router.post('/token', (req, res) => {
 
         const accessToken = jwt.sign({ username: user.username}, accessTokenSecret, { expiresIn: '20m' });
 
-        res.json({
-            accessToken
-        });
+        res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict' , domain: 'localhost'});
     });
 });
 
 router.post('/logout', (req, res) => {
-    const { token } = req.body;
-    refreshTokens = refreshTokens.filter(t => t.refreshToken !== token);
+    if(req.cookies.refreshToken)
+    {
+        const { refreshToken } = req.cookies;
+        refreshTokens = refreshTokens.filter(t => t.refreshToken !== refreshToken);
+    }
 
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+    res.clearCookie('user_id');
     res.send("Logout successful");
 });
 

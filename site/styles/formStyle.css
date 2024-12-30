@@ -50,3 +50,14 @@ form>input {
     top: 5%;
     right: 2%;
 }
+
+.ans{
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#loginForm{
+    margin-top: 20%;
+}

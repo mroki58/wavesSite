@@ -12,7 +12,7 @@ const registerForm = `
 
         <button id="closeFormButton"> X </button>
 
-        <form onsubmit="validateReg()">
+        <form onsubmit="register(event)">
             <label for="email">E-mail : </label>
             <input type="email" id="email" name="email" required/>
             <br />
@@ -24,7 +24,7 @@ const registerForm = `
 
 
             <label for="password">Hasło : </label>
-            <input type="password" id="password" name="password" required/>
+            <input type="password" id="password" name="password" required minlength="8"/>
             <br />
 
             <button type="submit"> Zarejestruj się! </button>
@@ -41,7 +41,7 @@ const loginForm = `
 
             <button id="closeFormButton"> X </button>
 
-            <form onsubmit="loginSend()">
+            <form onsubmit="login(event)" id="loginForm">
 
                 <label for="username">Nazwa użytkownika: </label>
                 <input type="text" id="username" name="username" required />

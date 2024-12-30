@@ -6,7 +6,10 @@ const routerAuth = require('./route/routerAuth.js')
 
 const app = express()
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser())
 
