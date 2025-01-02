@@ -10,11 +10,14 @@ db.exec(`CREATE TABLE IF NOT EXISTS users (
     )`);
 
 db.exec(`CREATE TABLE IF NOT EXISTS settings (
-    setting_is INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    setting_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    setting_name TEXT,
     user_id INTEGER REFERENCES users(user_id),
-    set1 DECIMAL,
-    set2 DECIMAL,
-    set3 DECIMAL
+    d DECIMAL,
+    f1 DECIMAL, 
+    f2 DECIMAL,
+    a1 DECIMAL,
+    a2 DECIMAL
     )`);
 
 module.exports = db;

@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const router = require('./route/router.js');
-const routerAuth = require('./route/routerAuth.js')
+const {routerAuth, refreshTokens} = require('./route/routerAuth.js')
 
 const app = express()
 

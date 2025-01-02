@@ -64,8 +64,8 @@ router.post('/login', async (req, res) => {
 
         if (is_password_good) {
             // generate an access token
-            const accessToken = jwt.sign({ username: username }, accessTokenSecret, { expiresIn: '10m' });
-            const refreshToken = jwt.sign({ username: username }, refreshTokenSecret, {expiresIn: '2h'});
+            const accessToken = jwt.sign({ user_id: ans[0].user_id }, accessTokenSecret, { expiresIn: '10m' });
+            const refreshToken = jwt.sign({ user_id: ans[0].user_id }, refreshTokenSecret, {expiresIn: '2h'});
 
             refreshTokens.push({refreshToken: refreshToken, exp: Date.now() + 7200 * 1000});
 
@@ -97,7 +97,7 @@ router.post('/token', (req, res) => {
             return res.sendStatus(403);
         }
 
-        const accessToken = jwt.sign({ username: user.username}, accessTokenSecret, { expiresIn: '20m' });
+        const accessToken = jwt.sign({ user_id: user.user_id}, accessTokenSecret, { expiresIn: '20m' });
 
         res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict' , domain: 'localhost'});
     });
@@ -116,4 +116,6 @@ router.post('/logout', (req, res) => {
     res.send("Logout successful");
 });
 
-module.exports = router;
+const routerAuth = router
+
+module.exports = {routerAuth, refreshTokens};
