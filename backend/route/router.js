@@ -22,21 +22,30 @@ router.get('/info', (req, res) => {
 // dodaje nowe ustawienie | sprawdza czy nowa nazwa nie jest taka sama jak stara
 // zwraca wiadomość
 router.post('/settings', (req, res) => {
-    const user_id = req.cookies.user_id;
+
+    const user_id = parseInt(req.cookies.user_id);
 
     let select = db.prepare("SELECT setting_id FROM settings WHERE user_id = ? AND setting_name = ?");
     let ans = select.all(user_id, req.body.setting_name);
 
     if(ans.length > 0)
     {
-        return res.status(409).send({msg: `Isnieje już ustawienie o nazwie ${req.body.setting_name}. Użyj innej nazwy! `});
+        return res.status(409).send(`Isnieje już ustawienie o nazwie ${req.body.setting_name}. Użyj innej nazwy! `);
     }
 
+    for(const key in req.body)
+    {
+        if(key != 'setting_name')
+        {
+            req.body[key] = parseFloat(req.body[key]);
+        }
+    }
 
     let insert = db.prepare("INSERT INTO settings(user_id, setting_name, d, f1, f2, a1, a2) VALUES (?, ?, ?, ?, ? ,?, ?)")
-    insert.run(user_id, req.body);
+    const { setting_name, d, f1, f2, a1, a2 } = req.body;
+    insert.run(user_id, setting_name, d, f1, f2, a1, a2);
 
-    return res.status(200).send({msg: `Stworzono nowe ustawienie ${req.body.setting_name}`});
+    return res.status(200).send(`Stworzono nowe ustawienie ${req.body.setting_name}`);
 
 });
 
