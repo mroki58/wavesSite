@@ -14,7 +14,7 @@ let refreshTokens = [];
 setInterval(() => {
     const now = Date.now();
     refreshTokens = refreshTokens.filter((token) => token.exp >= now);
-}, 30 * 60 * 1000); 
+}, 3 * 60 * 60 * 1000); 
 
 router.post('/register', async (req,res) => {
     try{
@@ -64,13 +64,13 @@ router.post('/login', async (req, res) => {
 
         if (is_password_good) {
             // generate an access token
-            const accessToken = jwt.sign({ user_id: ans[0].user_id }, accessTokenSecret, { expiresIn: '10m' });
-            const refreshToken = jwt.sign({ user_id: ans[0].user_id }, refreshTokenSecret, {expiresIn: '2h'});
+            const accessToken = jwt.sign({ user_id: ans[0].user_id }, accessTokenSecret, { expiresIn: '30m' });
+            const refreshToken = jwt.sign({ user_id: ans[0].user_id }, refreshTokenSecret, {expiresIn: '24h'});
 
             refreshTokens.push({refreshToken: refreshToken, exp: Date.now() + 7200 * 1000});
 
-            res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
-            res.cookie('refreshToken', refreshToken, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
+            res.cookie('accessToken', accessToken, { maxAge: 30 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
+            res.cookie('refreshToken', refreshToken, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
             res.cookie('user_id', ans[0].user_id, { maxAge: 2 * 60 * 60 * 1000 , domain: 'localhost'});
             res.send('Użytkownik zalogowany');
         } else {

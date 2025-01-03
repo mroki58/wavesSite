@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Fizyka - fale </title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/mainStyle.css" />
+    <link rel="stylesheet" href="styles/profileStyle.css" />
+</head>
+<body>
+    <div class="bar">
+        <header>
+            <svg xmlns="http://www.w3.org/2000/svg" width="350" height="50">
+                <path d="M 1 25 A 30 30 0 0 1 51 25" stroke="black" stroke-width="2" fill="transparent" />
+                <path d="M 51 25 A 30 30 0 0 0 101 25" stroke="black" stroke-width="2" fill="transparent" />
+    
+    
+    
+                <text x="105" y="25" font-family="Verdana" font-size="24" fill="black" text-anchor="start"
+                    alignment-baseline="middle">
+                    fale mechaniczne
+                </text>
+            </svg>
+    
+        </header>
+    
+        <nav>
+            <a href="animacja.html">Animacja interferencji</a>
+            <a href="index.html">Strona główna</a>
+            <button id="registerButton">Rejestracja</button>
+    
+            <div id="LoginLogout" style="display: inline-block;">
+                <button id="loginButton"> Logowanie </button>
+                <button id="logoutButton" style="display: none;" onclick="logout()">Wyloguj</button>
+            </div>
+    
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="element">
+            <h1 id="helloMsg"> </h1>
+            <br>
+            <figure>
+                <figcaption>Twoje konfiguracje: </figcaption>
+                <br>
+                <table id="tableConf">
+                    <thead>
+                        <tr>
+                            <th>Nazwa konfiguracji</th>
+                            <th>Odległość między źródłami [m]</th>
+                            <th>Częstotliwość 1. źródła [Hz]</th>
+                            <th>Częstotliwość 2. źródła [Hz]</th>
+                            <th>Amplituda 1. źródła [m]</th>
+                            <th>Amplituda 2. źródła [m]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </figure>
+
+
+        </div>
+    </div>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/buttonChange.js"></script>
+    <script src="scripts/formSend.js"></script>
+    <script src="scripts/profLook.js"></script>
+
+</body>
+</html>

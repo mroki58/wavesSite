@@ -69,6 +69,9 @@ function logout()
     })
     .then(res => res.text())
     .then(res => {
-        window.location.reload();
+        if(window.location.pathname.endsWith('profil.html'))
+            window.location.href = 'index.html';
+        else
+            window.location.reload();
     })
 }

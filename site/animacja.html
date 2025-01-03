@@ -5,8 +5,16 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="styles/mainStyle.css" />
     <link rel="stylesheet" href="styles/formStyle.css" />
-    
     <link rel="stylesheet" href="styles/animCanvas.css" />
+    <script>
+        if (!sessionStorage.getItem('f1') || !sessionStorage.getItem('a1') || !sessionStorage.getItem('f2') || !sessionStorage.getItem('a2') || !sessionStorage.getItem('d')) {
+            sessionStorage.setItem('d', 50)
+            sessionStorage.setItem('f1', 1)
+            sessionStorage.setItem('f2', 1)
+            sessionStorage.setItem('a1', 50)
+            sessionStorage.setItem('a2', 50)
+        }
+    </script>
 </head>
 <body>
         <div class="bar">
@@ -24,7 +32,7 @@
             </header>
         
             <nav>
-                <a href="animacja.html">Animacja interferencji</a>
+                <a id="profilLink" href="profil.html" style="display:none;">Profil użytkownika </a>
                 <a href="index.html">Strona główna</a>
                 <button id="registerButton">Rejestracja</button>
         

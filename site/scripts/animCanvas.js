@@ -21,8 +21,14 @@ function animateFps(cb, fps = 60) {
     update();
 }
 
-const source1 = { x: 100, y: 75, frequency: 1, amplitude: 50 };
-const source2 = { x: 200, y: 75, frequency: 1, amplitude: 50 };
+const source1 = { x: 100, y: 75, frequency: parseFloat(sessionStorage.getItem('f1')), amplitude: parseFloat(sessionStorage.getItem('a1')) };
+const source2 = { x: 100, y: 75, frequency: parseFloat(sessionStorage.getItem('f2')), amplitude: parseFloat(sessionStorage.getItem('a2')) };
+
+const distance = parseFloat(sessionStorage.getItem('d'));
+console.log(distance)
+let x = (300 - distance) / 2
+source1.x = x;
+source2.x = x + distance;
 
 const waveSpeed = 25;
 
@@ -79,26 +85,36 @@ sliders.d.addEventListener('input', () => {
     let x = (300 - distance) / 2
     source1.x = x;
     source2.x = x + distance;
-    console.log(source1, source2)
+    
+    sessionStorage.setItem('d', distance)
 })
 
 sliders.f1.addEventListener('input', () => {
     source1.frequency = parseFloat(sliders.f1.value);
+    sessionStorage.setItem('f1', parseFloat(sliders.f1.value))
 })
 
 sliders.f2.addEventListener('input', () => {
     source2.frequency = parseFloat(sliders.f2.value);
-    console.log(source1, source2)
+    sessionStorage.setItem('f2', parseFloat(sliders.f2.value))
 })
 
 sliders.a1.addEventListener('input', () => {
     source1.amplitude = parseFloat(sliders.a1.value);
+    sessionStorage.setItem('a1', parseFloat(sliders.a1.value))
 })
 
 
 sliders.a2.addEventListener('input', () => {
     source2.amplitude = parseFloat(sliders.a2.value);
+    sessionStorage.setItem('a2', parseFloat(sliders.a2.value))
 })
+
+sliders.d.value = sessionStorage.getItem('d')
+sliders.f1.value = sessionStorage.getItem('f1')
+sliders.f2.value = sessionStorage.getItem('f2')
+sliders.a1.value = sessionStorage.getItem('a1')
+sliders.a2.value = sessionStorage.getItem('a2')
 
 
 

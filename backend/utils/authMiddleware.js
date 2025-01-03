@@ -7,45 +7,41 @@ const refreshTokenSecret = 'somerandomstringforrefreshtoken';
 
 const authMid = (req, res, next) =>
 {
-    console.log('authmid')
+    try{
+        let refreshToken = req.cookies.refreshToken;
+        let accessToken = req.cookies.accessToken;
 
-    let refreshCookie = req.cookies.refreshToken;
-    let accessCookie = req.cookies.accessToken;
-    let user_id = req.cookies.user_id;
-
-    if (!refreshCookie) {
-        res.clearCookie('accessToken');
-        res.clearCookie('refreshToken');
-        res.clearCookie('user_id');
-        return res.status(401).location(req.get('Referrer'));
-    }
-
-    let refreshToken = refreshTokens.find((el) => el.refreshToken == refreshCookie)
-
-    if(!refreshToken || refreshToken.exp <= Date.now())
-    {
-        res.clearCookie('accessToken');
-        res.clearCookie('refreshToken');
-        res.clearCookie('user_id');
-        return res.status(401).location(req.get("Referrer"));
-    }
-    
-    jwt.verify(accessCookie, accessTokenSecret, async (err, result) => {
-
-        if (err) 
-        {
-            // tutaj musimy zmienić na werysikację refreshToken
-            const accessToken = jwt.sign({ user_id: user_id }, accessTokenSecret, { expiresIn: '10m' });
-            res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
-            return next();
+        if (!accessToken && !refreshToken) {
+            return res.status(401).send('Access Denied. No token provided.');
         }
 
-        return next();
-    });
+        try {
+            const decoded = jwt.verify(accessToken, accessTokenSecret);
+            next();
+        } catch (error) 
+        {
+            if (!refreshToken) {
+                return res.status(401).send('Access Denied. No refresh token provided.');
+            }
+
+            try {
+                const decoded = jwt.verify(refreshToken, refreshTokenSecret);
+                const accessToken = jwt.sign({ user: decoded.user }, secretKey, { expiresIn: '1h' });
+                res
+                    .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
+                    .cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'strict'})
+
+                next();
+            } catch (error) {
+                return res.status(400).send('Invalid Token.');
+            }
+        }
+    }catch(err)
+    {
+        console.log(err.message);
+    }
     
     
-
-
 }
 
 module.exports = authMid;
