@@ -26,11 +26,8 @@ const authMid = (req, res, next) =>
 
             try {
                 const decoded = jwt.verify(refreshToken, refreshTokenSecret);
-                const accessToken = jwt.sign({ user: decoded.user }, secretKey, { expiresIn: '1h' });
-                res
-                    .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
-                    .cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'strict'})
-
+                const accessToken = jwt.sign({ user_id: decoded.user_id }, accessTokenSecret, { expiresIn: '30m' });
+                res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'strict'})
                 next();
             } catch (error) {
                 return res.status(400).send('Invalid Token.');
