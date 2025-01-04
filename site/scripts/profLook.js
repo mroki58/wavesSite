@@ -1,3 +1,25 @@
+function useConfig(setting_id)
+{
+    console.log(setting_id)
+    fetch(`http://localhost:3001/api/settings/${setting_id}`, {
+        method: 'GET',
+        credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(res => {
+        sessionStorage.setItem('d', res.d);
+        sessionStorage.setItem('f1', res.f1);
+        sessionStorage.setItem('f2', res.f2);
+        sessionStorage.setItem('a1', res.a1);
+        sessionStorage.setItem('a2', res.a2);
+
+        window.location.href = 'animacja.html';
+    })
+
+
+}
+
+
 if(doesCookieExist('user_id'))
 {
     let info;
@@ -32,7 +54,7 @@ if(doesCookieExist('user_id'))
                 {
                     const data = document.createElement('td');
                     const button = document.createElement('button');
-                    button.onclick = () => callback(el[setting_id]);
+                    button.onclick = () => useConfig(el['setting_id']);
                     button.classList.add('config-btn');
                     button.textContent = el[key];
 

@@ -62,6 +62,7 @@ router.get('/settings', (req, res) => {
 });
 
 // pobiera dane dla jednej konfiguracji
+// zwraca JSON
 router.get('/settings/:id', (req, res) => {
     const user_id = req.cookies.user_id;
     const id = req.params.id;
