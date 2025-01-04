@@ -2,9 +2,10 @@
 <html lang="pl">
 <head>
     <title> Fizyka - fale </title>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="styles/mainStyle.css" />
-    <link rel="stylesheet" href="styles/formStyle.css" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/mainStyle.css" >
+    <link rel="stylesheet" href="styles/formStyle.css" >
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div class="bar">
@@ -38,14 +39,22 @@
     <div class="content">
         <div class="element">
             <article>
-                Fala – zaburzenie rozprzestrzeniające się w ośrodku materialnym lub w przestrzeni. W przypadku fal mechanicznych
-                cząstki ośrodka, w którym rozchodzi się fala, oscylują wokół położenia równowagi, przy czym przenoszą energię z jednego
-                miejsca do drugiego bez transportu jakiejkolwiek materii.
-                <br><br>
-                W zależności od kierunku rozchodzenia się fal można podzielić je na poprzeczne i podłużne. Fale poprzeczne mają kierunek
-                drgań prostopadły do kierunku rozchodzenia się (np. fala na sznurze, fale elektromagnetyczne). W falach podłużnych
-                drgania odbywają się w tym samym kierunku, w którym następuje ich propagacja (np. fale akustyczne). Natomiast w
-                przypadku fal rozchodzących się na wodzie ma się do czynienia z superpozycją drgań poprzecznych i podłużnych.
+                <h2>Czym są fale i jakie są ich rodzaje?</h2>
+                <p>Fala to zaburzenie rozchodzące się w przestrzeni i czasie, które przenosi energię, ale nie przenosi materii.
+                    Przykładem mogą być fale na powierzchni wody, gdzie ruch falowy nie przenosi samej wody, ale energię fal.</p>
+                <p>Fale można podzielić na:</p>
+                <ul>
+                    <li><strong>Fale mechaniczne</strong> – wymagają ośrodka materialnego do propagacji, np. fale dźwiękowe
+                        rozchodzące się w powietrzu lub fale sejsmiczne w skorupie ziemskiej.</li>
+                    <li><strong>Fale elektromagnetyczne</strong> – nie potrzebują ośrodka, mogą rozchodzić się w próżni, np.
+                        światło, fale radiowe czy promieniowanie rentgenowskie.</li>
+                </ul>
+                <p>W zależności od kierunku drgań względem kierunku propagacji wyróżniamy:</p>
+                <ul>
+                    <li><strong>Fale poprzeczne</strong> – drgania są prostopadłe do kierunku propagacji, np. fale na wodzie czy
+                        światło.</li>
+                    <li><strong>Fale podłużne</strong> – drgania są równoległe do kierunku propagacji, np. fale dźwiękowe.</li>
+                </ul>
             </article>
 
             <img src="png/fala.jpg" alt="Fala na wodzie" >
@@ -53,7 +62,17 @@
 
         <div class="element">
             <article>
-                odbicie – po dojściu do granicy ośrodków fale zmieniają zwrot, poruszając się nadal w tym samym ośrodku
+                <h2>Odbicie fali</h2>
+                <p>Odbicie fali następuje, gdy fala napotyka przeszkodę i zmienia kierunek swojego ruchu, pozostając w tym samym
+                    ośrodku. Zjawisko to opisuje prawo odbicia:</p>
+                <p>\[ \alpha = \beta \]</p>
+                <p>Gdzie:</p>
+                <ul>
+                    <li>\(\alpha\) – kąt padania,</li>
+                    <li>\(\beta\) – kąt odbicia.</li>
+                </ul>
+                <p>Przykładem odbicia fali jest odbicie światła od lustra, gdzie obraz tworzony jest w wyniku zmiany kierunku
+                    światła. Innym przykładem jest odbicie dźwięku, co prowadzi do powstawania echa.</p>
             </article>
             <svg width="35%" viewBox="0 0 400 200">
                 <!-- Podłoże -->
@@ -87,10 +106,21 @@
         </div>
 
         <div class="element">
-            <article>
-                załamanie (refrakcja) – na granicy ośrodków fala, przechodząc do ośrodka, w którym porusza się z inną prędkością,
-                zmienia kierunek swego biegu
-            </article>
+                <article>
+                    <h2>Załamanie fali</h2>
+                    <p>Załamanie fali następuje, gdy fala przechodzi z jednego ośrodka do drugiego i zmienia kierunek propagacji.
+                        Zjawisko to opisuje prawo Snelliusa:</p>
+                    <p>\[ n_1 \sin \alpha = n_2 \sin \beta \]</p>
+                    <p>Gdzie:</p>
+                    <ul>
+                        <li>\(n_1, n_2\) – współczynniki załamania ośrodków,</li>
+                        <li>\(\alpha, \beta\) – kąty padania i załamania.</li>
+                    </ul>
+                    <p>Przykładem załamania fali jest zakrzywienie światła przechodzącego przez granicę powietrza i wody, co można
+                        zaobserwować jako "przesunięcie" przedmiotu zanurzonego w wodzie. Inny przykład to załamanie fal dźwiękowych w
+                        atmosferze, które pozwala słyszeć dźwięki z dużych odległości.</p>
+                </article>
+
                 <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
                     <!-- Ośrodek 1 -->
                     <rect x="0" y="0" width="400" height="100" fill="none" />
@@ -119,30 +149,47 @@
                     <!-- Łuk dla kąta β -->
                     <path d="M200,125 A10,10 0 0,0 211,120" stroke="white" fill="none" />
                     <text x="205" y="145" font-size="14" fill="white">β</text>
-
-                    <!-- Strzałki -->
-                    <defs>
-                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
-                            <path d="M 0 0 L 10 5 L 0 10 Z" fill="white" />
-                        </marker>
-                    </defs>
                 
                 </svg>
         </div>
 
         <div class="element">
             <article>
-                dyfrakcja – uginanie się fali na krawędziach, czego skutkiem jest zdolność do omijania przeszkód mniejszych niż długość
-                fali, oraz powstawanie pasków dyfrakcyjnych po przejściu fali przez wąską szczelinę albo przeszkodę (np. siatkę
-                dyfrakcyjną)
+                <h2>Dyfrakcja fal</h2>
+                <p>Dyfrakcja to zjawisko ugięcia fal, gdy napotykają one przeszkodę lub przechodzą przez wąską szczelinę. Wyjaśnia ją zasada Huygensa. W wyniku
+                    tego zjawiska fale rozchodzą się w obszarze cienia geometrycznego, co jest sprzeczne z intuicyjnymi zasadami
+                    prostoliniowego rozchodzenia się fal.</p>
+                <p>Zjawisko to można opisać za pomocą wzoru:</p>
+                <p>\[ a \sin \theta = m \lambda \]</p>
+                <p>Gdzie:</p>
+                <ul>
+                    <li>\(a\) – szerokość szczeliny,</li>
+                    <li>\(\theta\) – kąt ugięcia,</li>
+                    <li>\(m\) – rząd dyfrakcji (liczba całkowita),</li>
+                    <li>\(\lambda\) – długość fali.</li>
+                </ul>
+                <p>Przykładem dyfrakcji jest ugięcie światła na krawędziach wąskich szczelin lub siatek dyfrakcyjnych, co prowadzi do
+                    powstawania prążków dyfrakcyjnych. Zjawisko to znajduje zastosowanie w spektroskopii, gdzie analiza widma światła
+                    pozwala na badanie właściwości substancji. Innym przykładem jest dyfrakcja fal dźwiękowych, która umożliwia
+                    słyszenie dźwięków za przeszkodami, takimi jak ściany lub drzewa.</p>
+
             </article>
             <img src="png/dyfrakcja.jpg" alt="Załamanie fali" >
         </div>
 
         <div class="element">
             <article>
-                interferencja – nakładanie się spójnych fal z różnych źródeł, które prowadzi do wzmocnienia lub wygaszenia się tychże
-                fal
+                <h2>Interferencja fal</h2>
+                <p>Interferencja to zjawisko nakładania się fal, które może prowadzić do wzmocnienia (interferencja konstruktywna)
+                    lub osłabienia (interferencja destruktywna). Różnicę faz między falami opisuje wzór:</p>
+                <p>\[ \Delta \phi = \frac{2 \pi \Delta x}{\lambda} \]</p>
+                <p>Gdzie:</p>
+                <ul>
+                    <li>\(\Delta x\) – różnica dróg optycznych,</li>
+                    <li>\(\lambda\) – długość fali.</li>
+                </ul>
+                <p>Przykładem interferencji jest tworzenie się prążków na powierzchni wody, gdy dwie fale nakładają się na siebie. W
+                    optyce interferencja światła powoduje powstawanie kolorowych wzorów, np. na powierzchni bańki mydlanej.</p>
             </article>
             <video width="320" height="240" controls>
                 <source src="video/interferencja.mp4" type="video/mp4">
@@ -153,10 +200,21 @@
 
         <div class="element">
             <article>
-                Efekt Dopplera – zjawisko fizyczne występujące dla fal, polegające na powstawaniu różnicy częstotliwości fali wysyłanej
-                przez jej źródło oraz częstotliwości fali rejestrowanej przez obserwatora, który porusza się względem tego źródła.
-                Dla fal rozprzestrzeniających się w ośrodku, takich jak na przykład fale dźwiękowe, wielkość efektu zależy od prędkości
-                obserwatora oraz źródła względem ośrodka, w którym te fale się rozchodzą.
+                <h2>Efekt Dopplera</h2>
+                <p>Efekt Dopplera to zmiana częstotliwości fali odbieranej przez obserwatora w ruchu względem źródła fali. Opisuje
+                    go wzór:</p>
+                <p>\[ f' = f \frac{v + v_o}{v + v_s} \]</p>
+                <p>Gdzie:</p>
+                <ul>
+                    <li>\(f'\) – częstotliwość odbierana,</li>
+                    <li>\(f\) – częstotliwość źródła,</li>
+                    <li>\(v\) – prędkość fali w ośrodku,</li>
+                    <li>\(v_o\) – prędkość obserwatora (dodatnia w kierunku do źródła),</li>
+                    <li>\(v_s\) – prędkość źródła (dodatnia w kierunku od obserwatora).</li>
+                </ul>
+                <p>Efekt Dopplera jest obserwowany np. w przypadku przejeżdżającego pojazdu, gdzie dźwięk silnika zmienia się w
+                    zależności od ruchu pojazdu względem obserwatora. W astronomii wykorzystuje się to zjawisko do badania ruchu
+                    gwiazd i galaktyk.</p>
             </article>
             <audio controls>
                 <source src="audio/doppler.mp3" type="audio/mpeg">

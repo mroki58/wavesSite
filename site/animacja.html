@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     <title> Fizyka - fale </title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles/mainStyle.css" />
-    <link rel="stylesheet" href="styles/formStyle.css" />
-    <link rel="stylesheet" href="styles/animCanvas.css" />
+    <meta charset="utf-8" >
+    <link rel="stylesheet" href="styles/mainStyle.css" >
+    <link rel="stylesheet" href="styles/formStyle.css" >
+    <link rel="stylesheet" href="styles/animCanvas.css" >
     <script>
         if (!sessionStorage.getItem('f1') || !sessionStorage.getItem('a1') || !sessionStorage.getItem('f2') || !sessionStorage.getItem('a2') || !sessionStorage.getItem('d')) {
             sessionStorage.setItem('d', 50)
@@ -53,22 +53,22 @@
 
             <form id="forAnimation">
                 <label for="d">Odległość między źrodłami</label>
-                <input type="range" id="d" name="d" min="0" max="100" value="50" step="0.1" /> 
+                <input type="range" id="d" name="d" min="0" max="100" value="50" step="0.1" > 
 
                 <label for="f1">Częstotliwość 1. źródła</label>
-                <input type="range" id="f1" name="f1" min="0.5" max="5" value="1" step="0.01"/>
+                <input type="range" id="f1" name="f1" min="0.5" max="5" value="1" step="0.01">
 
 
                 <label for="f2">Częstotliwość 2. źrodła</label>
-                <input type="range" id="f2" name="f2" min="0.5" max="5" value="1" step="0.01"/>
+                <input type="range" id="f2" name="f2" min="0.5" max="5" value="1" step="0.01">
 
 
                 <label for="a1">Amplituda 1. źródła</label>
-                <input type="range" id="a1" name="a1" min="0" max="100" value="50" step="0.1"/>
+                <input type="range" id="a1" name="a1" min="0" max="100" value="50" step="0.1">
 
 
                 <label for="a2">Amplituda 2. źródła</label>
-                <input type="range" id="a2" name="a2" min="0" max="100" value="50" step="0.1"/>
+                <input type="range" id="a2" name="a2" min="0" max="100" value="50" step="0.1">
 
 
                 <button type="button" id="config-save" style="display:none;">Zapisz konfiguracje</button>
