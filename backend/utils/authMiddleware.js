@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 const { routerAuth, refreshTokens } = require('../route/routerAuth.js');
 
-const accessTokenSecret = 'somerandomaccesstoken';
-const refreshTokenSecret = 'somerandomstringforrefreshtoken';
+const accessTokenSecret = process.env.JWT_ACCESS_SECRET;
+const refreshTokenSecret = process.env.JWT_REFRESH_SECRET;
 
 const authMid = (req, res, next) =>
 {

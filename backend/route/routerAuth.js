@@ -1,13 +1,14 @@
 const express = require('express')
 const jwt = require('jsonwebtoken'); 
 const bcryptjs = require('bcryptjs');
+require('dotenv').config()
 
 const db = require('../db_entry/model.js');
 
 const router = express.Router();
 
-const accessTokenSecret = 'somerandomaccesstoken';
-const refreshTokenSecret = 'somerandomstringforrefreshtoken';
+const accessTokenSecret = process.env.JWT_ACCESS_SECRET;
+const refreshTokenSecret = process.env.JWT_REFRESH_SECRET;
 let refreshTokens = [];
 
 // Usuwa tokeny, których ważność się skończyła
