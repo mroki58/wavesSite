@@ -20,8 +20,9 @@ function useConfig(setting_id)
 }
 
 
-if(doesCookieExist('user_id'))
-{
+userLogged.then(isLogged => {
+if(isLogged)
+    {
     let info;
     fetch('http://localhost:3001/api/info', {
         method: 'GET',
@@ -68,8 +69,7 @@ if(doesCookieExist('user_id'))
         }
         
         
-
-
     })
 
-}
+    }
+})

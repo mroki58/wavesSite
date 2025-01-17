@@ -13,7 +13,7 @@ const authMid = (req, res, next) =>
         let accessToken = req.cookies.accessToken;
 
         if (!accessToken && !refreshToken) {
-            return res.status(401).send('Access Denied. No token provided.');
+            return res.status(401).json(false);
         }
 
         try {
@@ -22,7 +22,7 @@ const authMid = (req, res, next) =>
         } catch (error) 
         {
             if (!refreshToken) {
-                return res.status(401).send('Access Denied. No refresh token provided.');
+                return res.status(401).json(false);
             }
 
             try {
@@ -31,7 +31,7 @@ const authMid = (req, res, next) =>
                 res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'strict'})
                 next();
             } catch (error) {
-                return res.status(400).send('Invalid Token.');
+                return res.status(400).json(false);
             }
         }
     }catch(err)

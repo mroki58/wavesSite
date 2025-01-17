@@ -32,33 +32,34 @@ function register(event)
     })
 }
 
-function login(event)
-{
+async function login(event) {
     event.preventDefault();
 
     let formObject = getDataFromForm();
 
-    const ans = document.querySelector('.ans')
+    const ans = document.querySelector('.ans');
 
-    fetch("http://localhost:3001/auth/login", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',  // Dodajemy nagłówek
-        },
-        body: JSON.stringify(formObject),
-        credentials: 'include',
-    })
-    .then(res => res.text())
-    .then(res => {
+    try {
+        const res = await fetch("http://localhost:3001/auth/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',  // Dodajemy nagłówek
+            },
+            body: JSON.stringify(formObject),
+            credentials: 'include',
+        });
 
-        if (doesCookieExist('user_id')) {
-            window.location.reload()
+        const responseText = await res.text();
+
+        if (await userLogged()) {
+            window.location.reload();
         } else {
-            ans.textContent = res;
+            ans.textContent = responseText;
         }
-
-    })
-
+    } catch (error) {
+        console.error('Błąd przy logowaniu:', error);
+        ans.textContent = 'Wystąpił błąd podczas logowania';
+    }
 }
 
 function logout()

@@ -72,7 +72,6 @@ router.post('/login', async (req, res) => {
 
             res.cookie('accessToken', accessToken, { maxAge: 30 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
             res.cookie('refreshToken', refreshToken, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
-            res.cookie('user_id', ans[0].user_id, { maxAge: 2 * 60 * 60 * 1000 , domain: 'localhost'});
             res.send('Użytkownik zalogowany');
         } else {
             res.status(401).send('Nieprawidłowe dane logowania');
@@ -113,7 +112,6 @@ router.post('/logout', (req, res) => {
 
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
-    res.clearCookie('user_id');
     res.send("Logout successful");
 });
 

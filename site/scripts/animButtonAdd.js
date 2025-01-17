@@ -17,7 +17,8 @@ const configForm = `
     </div>
     `;
 
-if(doesCookieExist('user_id'))
+userLogged().then(isLogged => {
+if(isLogged)
 {
     let button = document.getElementById('config-save');
     button.style.display = 'inline';
@@ -25,3 +26,4 @@ if(doesCookieExist('user_id'))
     button.addEventListener('click', () => showForm(configForm));
 
 }
+})
