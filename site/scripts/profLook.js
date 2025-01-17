@@ -20,7 +20,7 @@ function useConfig(setting_id)
 }
 
 
-userLogged.then(isLogged => {
+userLogged().then(isLogged => {
 if(isLogged)
     {
     let info;
