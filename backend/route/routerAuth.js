@@ -65,12 +65,12 @@ router.post('/login', async (req, res) => {
 
         if (is_password_good) {
             // generate an access token
-            const accessToken = jwt.sign({ user_id: ans[0].user_id }, accessTokenSecret, { expiresIn: '30m' });
+            const accessToken = jwt.sign({ user_id: ans[0].user_id }, accessTokenSecret, { expiresIn: '5m' });
             const refreshToken = jwt.sign({ user_id: ans[0].user_id }, refreshTokenSecret, {expiresIn: '24h'});
 
             refreshTokens.push({refreshToken: refreshToken, exp: Date.now() + 7200 * 1000});
 
-            res.cookie('accessToken', accessToken, { maxAge: 30 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
+            res.cookie('accessToken', accessToken, { maxAge: 5 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
             res.cookie('refreshToken', refreshToken, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'Strict', domain: 'localhost' });
             res.send('Użytkownik zalogowany');
         } else {
@@ -81,27 +81,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/token', (req, res) => {
-    const { token } = req.body;
-
-    if (!token) {
-        return res.sendStatus(401);
-    }
-
-    if (!refreshTokens.find(t => t.refreshToken === token)) {
-        return res.sendStatus(403);
-    }
-
-    jwt.verify(token, refreshTokenSecret, (err, user) => {
-        if (err) {
-            return res.sendStatus(403);
-        }
-
-        const accessToken = jwt.sign({ user_id: user.user_id}, accessTokenSecret, { expiresIn: '20m' });
-
-        res.cookie('accessToken', accessToken, { maxAge: 10 * 60 * 1000, httpOnly: true, sameSite: 'Strict' , domain: 'localhost'});
-    });
-});
 
 router.post('/logout', (req, res) => {
     if(req.cookies.refreshToken)
